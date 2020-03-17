@@ -2,8 +2,11 @@
 */.ipynb_checkpoints/*
 profile_default/
 ipython_config.py
+plik1.dat
 helio.dat
 stars.dat
 file_list.txt
 telescope_names.txt
 astro.dat
+lcf.dat
+lcf.trf
