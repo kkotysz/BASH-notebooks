@@ -1,0 +1,25 @@
+set term pngcairo size 1024,1024 font "Ubuntu Condensed, 16"                            # ustawienie wyjścia jako plik png, jego rozmiar oraz czcionka na wykresie
+set output "wykresy.png"                                                               # ustawienie nazwy pliku
+
+
+# DEFINICJA FUNKCJI I DOPASOWANIE DO DANYCH
+f(x) = a*x**3 + b*x**2 + c*x +d
+fit f(x) 'fake_data.dat' via a,b,c,d    # dopasowanie f(x) do danych z pliku
+
+set multiplot layout 3, 1
+set tmargin 3
+set title "sin(x)/x"                                                                   # tytuł pierwszego wykresu
+plot sin(x)/x w l lw 4 lc rgb 'blue'
+
+set title "Wielomian trzeciego stopnia"                                                # tytuł drugiego wykresu
+set xlabel "FAKE X DATA"                                                               # ustawienie opisu osi x
+set ylabel "FAKE Y DATA" 
+p 'fake_data.dat' w p pt 7 lc 7 ps 0.7 title "DATA", a*x**3+b*x**2+c*x+d w l lw 4 lc 2 title 'FITTED FUNCTION', 'gen_data.dat' w l lc 8 lw 6 dt 2 title "REAL DATA"
+
+
+set title "HISTOGRAM"                                                                  # tytuł trzeciego wykresu
+set xlabel "Magnitude [mag]"                                                           # ustawienie opisu osi x
+set ylabel "Number"                                                                    # ustawienie opisu osi y
+set style fill solid 0.85 border lt -1                                                 # wypełnienie słupków histogramu
+plot 'histogram.dat' using 1:2 w boxes lc rgb "green" title "HISTOGRAM"                # rysowanie histogramu
+unset multiplot
